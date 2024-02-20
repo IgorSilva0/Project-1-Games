@@ -1,3 +1,50 @@
+*{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: rgb(255, 255, 255);
+}
 body{
-    background-color: black;
+    background-color: rgb(237, 237, 237);
+}
+#main{
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+    background-color: rgb(10, 10, 10);
+    border-radius: 3%;
+    margin: 5% 10%;
+}
+a{
+    text-decoration: none;
+}
+#sideNavBar{
+    display: flex;
+}
+#ulSideBar{ 
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+}
+#ulSideBar li a{
+    transition: ease-in-out 0.25s;
+}
+#ulSideBar li a:hover{
+    background-color: rgb(100, 100, 100);
+    padding: 3px 3px;
+    border-radius: 20%;
+}
+#ulSideBar li a:active{
+    background-color: rgb(164, 164, 164);
+    padding: 3px 3px;
+    border-radius: 20%;
+}
+#ulSideBar li:nth-child(6){
+    margin-bottom: 10rem;
+}
+#nigthMode a i:active{
+    
+}
+#lightMode a i:active{
+ 
 }
