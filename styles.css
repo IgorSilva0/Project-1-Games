@@ -1,5 +1,5 @@
 *{
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(255, 255, 255);
 }
 body{
@@ -25,26 +25,48 @@ a{
     flex-wrap: wrap;
     justify-content: space-around;
     list-style: none;
+    padding: 10px 20px;
+    margin: 10px 20px;
 }
-#ulSideBar li a{
-    transition: ease-in-out 0.25s;
+
+#ulSideBar li a i{
+    transition: ease-in-out 0.3s;
+    text-shadow: rgb(199, 71, 250) 0 0 10px;
 }
-#ulSideBar li a:hover{
-    background-color: rgb(100, 100, 100);
-    padding: 3px 3px;
-    border-radius: 20%;
+#ulSideBar li a i:hover{
+    color: rgb(181, 0, 252);
+    font-size: 140%;
+    text-shadow: rgb(255, 255, 255) 0 0 10px;
 }
-#ulSideBar li a:active{
-    background-color: rgb(164, 164, 164);
-    padding: 3px 3px;
-    border-radius: 20%;
+#ulSideBar li a i:active{
+    color: rgb(142, 0, 199);
+    font-size: 140%;
 }
 #ulSideBar li:nth-child(6){
     margin-bottom: 10rem;
 }
-#nigthMode a i:active{
-    
+
+#ulSideBar li:nth-child(7) a i:hover{
+    color: rgb(0, 0, 0);
+    text-shadow: rgb(255, 255, 255) 0 0 15px;
+    font-size: 150%;
 }
-#lightMode a i:active{
- 
+#ulSideBar li:nth-child(8) a i:hover{
+    color: rgb(217, 188, 0);
+    text-shadow: rgb(255, 255, 255) 0 0 15px;
+}
+
+#topNavBar{
+    width: 90%;
+    padding: 10px 50px;
+}
+#topNavBar ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+}
+#topNavBar input,.fa.fa-search{
+    color: rgb(0, 0, 0);
 }
