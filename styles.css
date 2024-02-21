@@ -25,8 +25,8 @@ a{
     flex-wrap: wrap;
     justify-content: space-around;
     list-style: none;
-    padding: 10px 20px;
-    margin: 10px 20px;
+    padding: 10px 15px;
+    margin: 10px 15px;
 }
 
 #ulSideBar li a i{
@@ -56,9 +56,25 @@ a{
     text-shadow: rgb(255, 255, 255) 0 0 15px;
 }
 
+
+@media screen and (max-width: 700px) {
+    #topNavBar{
+      display: none;
+    }
+}
+@media screen and (max-width: 1100px) {
+    #rank{
+      display: none;
+    }
+    #topNavBar{
+        width: 50%;
+        margin-right: 85px;
+    }
+}
+
 #topNavBar{
     width: 90%;
-    padding: 10px 50px;
+    padding: 20px 0px;
 }
 #topNavBar ul{
     display: flex;
@@ -67,6 +83,20 @@ a{
     list-style: none;
     padding: 0;
 }
+#topNavBar ul li{
+   
+}
 #topNavBar input,.fa.fa-search{
     color: rgb(0, 0, 0);
+}
+
+#rank{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(0, 136, 255);
+}
+#content{
+    width: 100%;
+    height: 80%;
+    background-color: aliceblue;
 }
