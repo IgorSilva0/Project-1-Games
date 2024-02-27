@@ -13,20 +13,22 @@ body{
     border-radius: 3%;
     margin: 5% 10%;
 }
-a{
+a, ul{
     text-decoration: none;
+    list-style: none;
 }
 #sideNavBar{
     display: flex;
+    padding: 0 5px;
 }
 #ulSideBar{ 
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-around;
-    list-style: none;
     padding: 10px 15px;
-    margin: 10px 15px;
+    margin: 10px 20px;
+    width: 20px;
 }
 
 #ulSideBar li a i{
@@ -63,12 +65,16 @@ a{
     }
 }
 @media screen and (max-width: 1100px) {
-    #rank{
+    #rank, #rank ul{
       display: none;
     }
     #topNavBar{
         width: 50%;
-        margin-right: 85px;
+        margin-right: 75px;
+    }
+    #ulSideBar{
+        padding: 8px 13px;
+        margin: 8px 17px;
     }
 }
 
@@ -79,24 +85,40 @@ a{
 #topNavBar ul{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    list-style: none;
+    justify-content: space-around;
     padding: 0;
-}
-#topNavBar ul li{
-   
+    margin: 10px 15px;
 }
 #topNavBar input,.fa.fa-search{
     color: rgb(0, 0, 0);
 }
 
-#rank{
-    width: 100px;
-    height: 100px;
-    background-color: rgb(0, 136, 255);
+#rank ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    text-align: center;
+    padding: 0 20px;
+    margin: 0 10px;
 }
+
 #content{
     width: 100%;
     height: 80%;
     background-color: aliceblue;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+#rank img{
+    display: block;
+    margin: 10px auto;
+}
+
+#rank li i{
+    transition: ease-in-out 0.3s;
+    text-shadow: rgb(199, 71, 250) 0 0 10px;
+}
+#rank img{
+    box-shadow: rgb(199, 71, 250) 0 0 10px;
 }
