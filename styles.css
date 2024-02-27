@@ -106,10 +106,18 @@ a, ul{
 #content{
     width: 100%;
     height: 80%;
-    background-color: aliceblue;
+    background-color: rgb(94, 94, 94);
     margin-bottom: 10px;
     border-radius: 20px;
+    text-align: center;
 }
+#content button{
+    color: black;
+}
+.gameon{
+    display: none;
+}
+
 #rank img{
     display: block;
     margin: 10px auto;
