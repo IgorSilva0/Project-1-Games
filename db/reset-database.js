@@ -30,7 +30,7 @@ async function resetDatabase() {
             CREATE TABLE score (
                 game_id INT REFERENCES game(game_id),
                 user_id INT REFERENCES users(user_id),
-                score INT NOT NULL DEFAULT 0
+                score INT DEFAULT 0
             );
         `);
     // Seed every table
@@ -42,12 +42,14 @@ async function resetDatabase() {
     // games
     await pool.query(`
             INSERT INTO game (name)
-            VALUES ('Rock paper scissors')
+            VALUES ('Rock paper scissors'),
+                   ('Black Jack')
     `);
     // score
     await pool.query(`
-            INSERT INTO score (game_id, user_id)
-            VALUES (1, 1)
+            INSERT INTO score (game_id, user_id, score)
+            VALUES (1, 1, 5),
+                   (2, 1, 10)
     `);
     console.log(`Database reset successful`);
   } catch (err) {
