@@ -1,20 +1,26 @@
 const startbtn = document.querySelector("#startbtn");
-const rockbtn = document.querySelector("#rock");
-const paperbtn = document.querySelector("#paper");
-const scissorbtn = document.querySelector("#scissor");
 const allRps = document.querySelectorAll(".rps");
-
 const block = document.querySelector("#content");
+let gameStart = false;
 
 startbtn.addEventListener("click", () => {
-  startbtn.classList.add("gameon");
   allRps.forEach((btn) => {
     btn.classList.remove("gameon");
   });
-  // rockbtn.classList.remove("gameon");
-  // paperbtn.classList.remove("gameon");
-  // scissorbtn.classList.remove("gameon");
+  startbtn.classList.add("gameon");
   block.children[2].textContent = "Choose:";
+  gameStart = true;
 });
 
-rockbtn.addEventListener("mouseover", () => {});
+allRps.forEach((x) => {
+  x.addEventListener("mouseover", (z) => {
+    z.target.src =
+      z.target.src.slice(0, z.target.src.length - 4) + "2" + ".png";
+  });
+  x.addEventListener("mouseout", (z) => {
+    z.target.src = z.target.src.slice(0, z.target.src.length - 5) + ".png";
+  });
+  x.addEventListener("click", (z) => {
+    console.log(`hi${z.target.src}`);
+  });
+});

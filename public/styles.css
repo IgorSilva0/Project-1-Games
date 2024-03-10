@@ -143,13 +143,13 @@ a, ul{
         transform: rotate(0deg) translate3d(0px);
     }
     25%{
-        transform: rotate(-10deg) translateX(-10px);
+        transform: rotate(-5deg) translateX(-5px);
     }
     50%{
         transform: rotate(0deg) translateX(0px);
     }
     75%{
-        transform: rotate(10deg) translateX(10px);
+        transform: rotate(5deg) translateX(5px);
     }
     100%{
         transform: rotate(0deg) translateX(0px);
