@@ -1,10 +1,10 @@
 // Import the pg (node-postgres) library
 import pg from "pg";
 
-// Get database connection string from env
+// Retrieve the database connection string from environment variables
 const connectionString = process.env.DB_CONNECTION_STRING;
 
-// check connection string
+// Check if the connection string is not defined, and if so, throw an error
 if (!connectionString) {
   throw new Error(
     "No DB_CONNECTION_STRING defined. Did you load in your env variables?"
