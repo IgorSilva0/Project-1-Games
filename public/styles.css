@@ -130,3 +130,28 @@ a, ul{
 #rank img{
     box-shadow: rgb(199, 71, 250) 0 0 10px;
 }
+.rps{
+    width: 8rem;
+    height: 8rem;
+    margin: 0 20px;
+}
+.rps:hover{
+    animation: shake 0.4s;
+}
+@keyframes shake {
+    0%{
+        transform: rotate(0deg) translate3d(0px);
+    }
+    25%{
+        transform: rotate(-10deg) translateX(-10px);
+    }
+    50%{
+        transform: rotate(0deg) translateX(0px);
+    }
+    75%{
+        transform: rotate(10deg) translateX(10px);
+    }
+    100%{
+        transform: rotate(0deg) translateX(0px);
+    }
+}
