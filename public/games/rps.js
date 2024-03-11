@@ -25,7 +25,7 @@ allRps.forEach((x) => {
   });
 });
 
-function gameStart() {
+async function gameStart() {
   const rps = ["rock", "paper", "scissors"];
   let random = Math.floor(Math.random() * 3);
   let pcChoice = rps[random];
