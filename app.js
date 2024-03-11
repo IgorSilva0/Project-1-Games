@@ -16,7 +16,7 @@ app.use((req, res, next) => {
 app.get("/test", async (req, res) => {
   console.log("Working");
   const data = await pool.query(
-    "SELECT * FROM users INNER JOIN score ON users.user_id = score.user_id WHERE score.game_id = 2"
+    "SELECT * FROM users INNER JOIN score ON users.user_id = score.user_id WHERE score.game_id = 1"
   );
   res.send({ success: true, payload: data.rows });
 });
