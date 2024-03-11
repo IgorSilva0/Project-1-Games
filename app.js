@@ -1,5 +1,6 @@
 import express from "express";
 import { pool } from "./db/index.js";
+import { addScore } from "./score.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -14,11 +15,29 @@ app.use((req, res, next) => {
 });
 
 app.get("/test", async (req, res) => {
-  console.log("Working");
-  const data = await pool.query(
-    "SELECT * FROM users INNER JOIN score ON users.user_id = score.user_id WHERE score.game_id = 1"
-  );
+  const data = await pool.query("SELECT * FROM score");
+  // const data = await pool.query(
+  //   "SELECT * FROM users INNER JOIN score ON users.user_id = score.user_id WHERE score.game_id = 1"
+  // );
   res.send({ success: true, payload: data.rows });
+});
+
+// Post New Score
+app.post("/scorerps/:userID", async (req, res) => {
+  const { password } = req.query;
+  if (password === "test") {
+    const userID = req.params.userID;
+    const data = await addScore(1, userID);
+    if (data) {
+      res.send({ success: true, message: "Score added!", payload: data });
+      return;
+    } else {
+      res.send({ success: false, message: "Player not found!" });
+      return;
+    }
+  }
+  res.send({ success: false, message: "Wrong password!" });
+  return;
 });
 
 // Server listen to a port
