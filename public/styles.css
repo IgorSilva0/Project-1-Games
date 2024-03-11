@@ -132,11 +132,12 @@ a, ul{
 }
 .rps{
     width: 8rem;
-    height: 8rem;
+    height: 9rem;
     margin: 0 20px;
 }
 .rps:hover{
     animation: shake 0.4s;
+    cursor: pointer;
 }
 @keyframes shake {
     0%{
