@@ -2,13 +2,16 @@ const startbtn = document.querySelector("#startbtn");
 const allRps = document.querySelectorAll(".rps");
 const block = document.querySelector("#content");
 let player = "";
+let round = 1;
 
 startbtn.addEventListener("click", () => {
   allRps.forEach((btn) => {
     btn.classList.remove("gameon");
   });
   startbtn.classList.add("gameon");
-  block.children[2].textContent = "Choose:";
+  block.children[1].textContent = `Round ${round}`; // h3
+  block.children[2].classList.add("gameon"); // img
+  block.children[3].textContent = "Choose:"; // h4
 });
 
 allRps.forEach((x) => {
@@ -34,36 +37,45 @@ async function gameStart() {
     // Computer chose ROCK
     case "rock":
       if (player === "paper") {
-        updateScore();
+        await updateScore();
+        await rankData();
         console.log("You win! paper wins over rock");
+        break;
       } else if (player === "rock") {
         console.log(`It's a Draw (rock and rock)`);
+        break;
       } else {
         console.log(`Computer wins with rock`);
+        break;
       }
-      break;
     // Computer chose PAPER
     case "paper":
       if (player === "scissors") {
-        updateScore();
+        await updateScore();
+        await rankData();
         console.log("You win! scissors wins over paper");
+        break;
       } else if (player === "paper") {
         console.log(`It's a Draw (paper and paper)`);
+        break;
       } else {
         console.log(`Computer wins with paper`);
+        break;
       }
-      break;
     // Computer chose SCISSORS
     case "scissors":
       if (player === "rock") {
-        updateScore();
+        await updateScore();
+        await rankData();
         console.log("You win! rock wins over scissors");
+        break;
       } else if (player === "scissors") {
         console.log(`It's a Draw (scissors and scissors)`);
+        break;
       } else {
         console.log(`Computer wins with scissors`);
+        break;
       }
-      break;
     // Default
     default:
       console.log("ERROR");
@@ -72,7 +84,7 @@ async function gameStart() {
 }
 
 async function updateScore() {
-  await fetch("http://localhost:5432/scorerps/1?password=test", {
+  await fetch("http://localhost:5432/scorerps/1?k=8*ej1^3d9K:J4zn136", {
     method: "PUT",
   });
 }

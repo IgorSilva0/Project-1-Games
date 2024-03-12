@@ -1,98 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gaming WebSite - SOC - by:Igor</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/0dc9d8b104.js" crossorigin="anonymous"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/0dc9d8b104.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="main">
-        <!-- Side NavBar start here -->
-        <nav id="sideNavBar">
-            <ul id="ulSideBar">
-                <li>
-                    <a href="#"><i class="fa-solid fa-house fa-lg"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-solid fa-gamepad fa-lg"></i></a>
-                </li>	
-                <li>
-                    <a href="#"><i class="fa-solid fa-image fa-lg"></i></a>
-                </li>	
-                <li>
-                    <a href="#"><i class="fa-solid fa-bell fa-lg"></i></a>
-                </li>
-                <li>	
-                    <a href="#"><i class="fa-solid fa-gear fa-lg"></i></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-solid fa-ranking-star fa-lg"></i></a>
-                </li>
-                <li id="nigthMode">
-                    <a href="#"><i class="fa-solid fa-moon fa-lg"></i></a>
-                </li> 
-                <li id="lightode">
-                    <a href="#"><i class="fa-solid fa-sun fa-lg"></i></a>
-                </li>
-            </ul>
-        </nav>
-        <!-- TOP NavBar start here -->
-        <nav id="topNavBar">
-            <ul>
-                <li>
-                    <a>hello</a>
-                </li>
-                <li>
-                    <form action="#">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form> 
-                </li>
-                <li>
-                    <a>hello</a>
-                </li>
-                <li>
-                    <a>hello</a>
-                </li>       
-            </ul>
-            <br/> 
-            <div id="content">
-                <h1>Rock, Paper and Scissor</h1>
-                <h3>Welcome to the Game of Rock ⚫, Paper 📜 and Scissor ✂.</h3>
-                <h4>Are you ready to begin?</h4> 
-                <button id="startbtn">Start</button>
-                <img src="./imgs/rockHand.png" class="gameon rps" id="rock">
-                <img src="./imgs/paperHand.png" class="gameon rps" id="paper">
-                <img src="./imgs/scissorsHand.png" class="gameon rps" id="scissors">
-                
-            </div>
-        </nav>
-        <!--Rigth Side bar of Rank-->
-        <div id="rank">
-            <ul>
-                <li>
-                    <a><i class="fa-solid fa-circle-user fa-2xl"></i></a>
-                </li>
-                <li>
-                    <img src="imgs/rank-img.png" width="40px" height="40px">
-                    <i class="fa-solid fa-trophy fa-xs"> 100</i>
-                    
-                </li>
-                <li>
-                    <img src="imgs/rank-img.png" width="40px" height="40px">
-                    <i class="fa-solid fa-trophy fa-xs"> 80</i>
-                    
-                </li>
-                <li>
-                    <img src="imgs/rank-img.png" width="40px" height="40px">
-                    <i class="fa-solid fa-trophy fa-xs"> 60</i>
-                    
-                </li>
-            </ul>
+      <!-- Side NavBar start here -->
+      <nav id="sideNavBar">
+        <ul id="ulSideBar">
+          <li>
+            <a href="#"><i class="fa-solid fa-house fa-lg"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-gamepad fa-lg"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-image fa-lg"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-bell fa-lg"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-gear fa-lg"></i></a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-ranking-star fa-lg"></i></a>
+          </li>
+          <li id="nightMode">
+            <a href="#"><i class="fa-solid fa-moon fa-lg"></i></a>
+          </li>
+          <li id="lightMode">
+            <a href="#"><i class="fa-solid fa-sun fa-lg"></i></a>
+          </li>
+        </ul>
+      </nav>
+      <!-- TOP NavBar start here -->
+      <nav id="topNavBar">
+        <ul>
+          <li>
+            <a>hello</a>
+          </li>
+          <li>
+            <form action="#">
+              <input type="text" placeholder="Search.." name="search" />
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </li>
+          <li>
+            <a>hello</a>
+          </li>
+          <li>
+            <a>hello</a>
+          </li>
+        </ul>
+        <br />
+        <div id="content">
+          <p>Rock, Paper and Scissors</p>
+          <h3>Welcome to the Game!</h3>
+          <img
+            src="./imgs/rps.png"
+            alt="Rps rules"
+            width="150px"
+            height="150px"
+          />
+          <h4>Are you ready to begin?</h4>
+          <button id="startbtn">PLAY</button>
+          <img src="./imgs/rockHand.png" class="gameon rps" id="rock" />
+          <img src="./imgs/paperHand.png" class="gameon rps" id="paper" />
+          <img src="./imgs/scissorsHand.png" class="gameon rps" id="scissors" />
         </div>
+        <div id="content2">Hello</div>
+      </nav>
+      <!--Rigth Side bar of Rank-->
+      <div id="rank">
+        <ul>
+          <li>
+            <a><i class="fa-solid fa-circle-user fa-2xl"></i></a>
+          </li>
+          <li class="tooltip">
+            <img
+              src="imgs/rank-img.png"
+              width="40px"
+              height="40px"
+              style="border-radius: 50%"
+            />
+            <span class="tooltiptext">Test1</span>
+            <i class="fa-solid fa-trophy fa-2xs" id="top1"> 0</i>
+          </li>
+          <li class="tooltip">
+            <img
+              src="imgs/rank-img.png"
+              width="40px"
+              height="40px"
+              style="border-radius: 50%"
+            />
+            <span class="tooltiptext">Test2</span>
+            <i class="fa-solid fa-trophy fa-2xs" id="top2"> 0</i>
+          </li>
+          <li class="tooltip">
+            <img
+              src="imgs/rank-img.png"
+              width="40px"
+              height="40px"
+              style="border-radius: 50%"
+            />
+            <span class="tooltiptext">Test3</span>
+            <i class="fa-solid fa-trophy fa-2xs" id="top3"> 0</i>
+          </li>
+        </ul>
+      </div>
     </div>
     <script src="./games/rps.js"></script>
-</body>
+    <script src="./main.js"></script>
+  </body>
 </html>

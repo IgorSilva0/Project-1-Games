@@ -1,158 +1,251 @@
-*{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(255, 255, 255);
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(255, 255, 255);
 }
-body{
-    background-color: rgb(237, 237, 237);
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://e0.pxfuel.com/wallpapers/584/178/desktop-wallpaper-gaming-background-cool-black-and-red-gaming.jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  margin: 0;
 }
-#main{
-    display: flex;
-    flex-direction: row;
-    height: 600px;
-    background-color: rgb(10, 10, 10);
-    border-radius: 3%;
-    margin: 5% 10%;
+#main {
+  display: flex;
+  align-content: center;
+  height: 550px;
+  width: 75%;
+  background-color: rgb(29, 29, 29);
+  border-radius: 50px;
+  margin: 5% 10%;
+  box-shadow: black 0 0 50px;
+  border: 1px solid rgb(61, 61, 61);
 }
-a, ul{
-    text-decoration: none;
-    list-style: none;
+a,
+ul {
+  text-decoration: none;
+  list-style: none;
 }
-#sideNavBar{
-    display: flex;
-    padding: 0 5px;
+#sideNavBar {
+  display: flex;
+  padding: 0 5px;
 }
-#ulSideBar{ 
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 10px 15px;
-    margin: 10px 20px;
-    width: 20px;
-}
-
-#ulSideBar li a i{
-    transition: ease-in-out 0.3s;
-    text-shadow: rgb(199, 71, 250) 0 0 10px;
-}
-#ulSideBar li a i:hover{
-    color: rgb(181, 0, 252);
-    font-size: 140%;
-    text-shadow: rgb(255, 255, 255) 0 0 10px;
-}
-#ulSideBar li a i:active{
-    color: rgb(142, 0, 199);
-    font-size: 140%;
-}
-#ulSideBar li:nth-child(6){
-    margin-bottom: 10rem;
+#ulSideBar {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px 15px;
+  margin: 15px 20px;
+  width: 20px;
 }
 
-#ulSideBar li:nth-child(7) a i:hover{
-    color: rgb(0, 0, 0);
-    text-shadow: rgb(255, 255, 255) 0 0 15px;
-    font-size: 150%;
+#ulSideBar li a i {
+  transition: ease-in-out 0.3s;
+  text-shadow: red 0 0 10px;
 }
-#ulSideBar li:nth-child(8) a i:hover{
-    color: rgb(217, 188, 0);
-    text-shadow: rgb(255, 255, 255) 0 0 15px;
+#ulSideBar li a i:hover {
+  color: red;
+  font-size: 140%;
+  text-shadow: rgb(255, 255, 255) 0 0 10px;
+}
+#ulSideBar li a i:active {
+  color: rgb(0, 0, 0);
+  font-size: 140%;
+}
+#ulSideBar li:nth-child(6) {
+  margin-bottom: 10rem;
 }
 
+#ulSideBar li:nth-child(7) a i:hover {
+  color: rgb(0, 0, 0);
+  text-shadow: rgb(255, 255, 255) 0 0 15px;
+  font-size: 150%;
+}
+#ulSideBar li:nth-child(8) a i:hover {
+  color: rgb(217, 188, 0);
+  text-shadow: rgb(255, 255, 255) 0 0 15px;
+}
 
 @media screen and (max-width: 700px) {
-    #topNavBar{
-      display: none;
-    }
+  #topNavBar {
+    display: none;
+  }
 }
 @media screen and (max-width: 1100px) {
-    #rank, #rank ul{
-      display: none;
-    }
-    #topNavBar{
-        width: 50%;
-        margin-right: 75px;
-    }
-    #ulSideBar{
-        padding: 8px 13px;
-        margin: 8px 17px;
-    }
-}
-
-#topNavBar{
-    width: 90%;
-    padding: 20px 0px;
-}
-#topNavBar ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 0;
-    margin: 10px 15px;
-}
-#topNavBar input,.fa.fa-search{
-    color: rgb(0, 0, 0);
-}
-
-#rank ul{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 100%;
-    text-align: center;
-    padding: 0 20px;
-    margin: 0 10px;
-}
-
-#content{
-    width: 100%;
-    height: 80%;
-    background-color: rgb(94, 94, 94);
-    margin-bottom: 10px;
-    border-radius: 20px;
-    text-align: center;
-}
-#content button{
-    color: black;
-}
-.gameon{
+  #rank,
+  #rank ul {
     display: none;
+  }
+  #topNavBar {
+    width: 50%;
+    margin-right: 75px;
+  }
+  #ulSideBar {
+    padding: 8px 13px;
+    margin: 8px 17px;
+  }
 }
 
-#rank img{
-    display: block;
-    margin: 10px auto;
+#topNavBar {
+  width: 90%;
+  padding: 20px 0px;
+}
+#topNavBar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0;
+  margin: 10px 15px;
+}
+#topNavBar input,
+.fa.fa-search {
+  color: rgb(0, 0, 0);
 }
 
-#rank li i{
-    transition: ease-in-out 0.3s;
-    text-shadow: rgb(199, 71, 250) 0 0 10px;
+#rank ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  text-align: center;
+  padding: 0 20px;
+  margin: 0 10px;
 }
-#rank img{
-    box-shadow: rgb(199, 71, 250) 0 0 10px;
+
+#content {
+  width: 100%;
+  height: 80%;
+  background-color: rgb(94, 94, 94);
+  margin-bottom: 10px;
+  border-radius: 20px;
+  text-align: center;
 }
-.rps{
-    width: 8rem;
-    height: 9rem;
-    margin: 0 20px;
+#content p {
+  margin: auto;
+  letter-spacing: 0.0015em;
+  font-size: 3em;
+  color: rgb(0, 0, 0);
+  text-shadow: 0 1px rgb(88, 23, 23), -1px 0 black, -1px 2px rgb(88, 23, 23),
+    -2px 1px black, -2px 3px rgb(88, 23, 23), -3px 2px black,
+    -3px 4px rgb(88, 23, 23), -4px 3px black;
+  text-align: center;
 }
-.rps:hover{
-    animation: shake 0.4s;
-    cursor: pointer;
+
+.gameon {
+  display: none;
+}
+
+#rank img {
+  display: block;
+  margin: 10px auto;
+}
+
+#rank li i {
+  transition: ease-in-out 0.3s;
+  text-shadow: red 0 0 10px;
+}
+#rank img {
+  box-shadow: red 0 0 10px;
+}
+.rps {
+  width: 6rem;
+  height: 7rem;
+  margin: 0 20px;
+}
+.rps:hover {
+  animation: shake 0.4s;
+  cursor: pointer;
 }
 @keyframes shake {
-    0%{
-        transform: rotate(0deg) translate3d(0px);
-    }
-    25%{
-        transform: rotate(-5deg) translateX(-5px);
-    }
-    50%{
-        transform: rotate(0deg) translateX(0px);
-    }
-    75%{
-        transform: rotate(5deg) translateX(5px);
-    }
-    100%{
-        transform: rotate(0deg) translateX(0px);
-    }
+  0% {
+    transform: rotate(0deg) translate3d(0px);
+  }
+  25% {
+    transform: rotate(-5deg) translateX(-5px);
+  }
+  50% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  75% {
+    transform: rotate(5deg) translateX(5px);
+  }
+  100% {
+    transform: rotate(0deg) translateX(0px);
+  }
+}
+#content2 {
+  width: 100%;
+  height: 80%;
+  background-color: rgb(94, 94, 94);
+  margin-bottom: 10px;
+  border-radius: 20px;
+  text-align: center;
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+#startbtn:hover,
+:focus {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+    0 0 100px #008cff;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -40px;
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
