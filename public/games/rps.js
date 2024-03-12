@@ -34,6 +34,7 @@ async function gameStart() {
     // Computer chose ROCK
     case "rock":
       if (player === "paper") {
+        updateScore();
         console.log("You win! paper wins over rock");
       } else if (player === "rock") {
         console.log(`It's a Draw (rock and rock)`);
@@ -44,6 +45,7 @@ async function gameStart() {
     // Computer chose PAPER
     case "paper":
       if (player === "scissors") {
+        updateScore();
         console.log("You win! scissors wins over paper");
       } else if (player === "paper") {
         console.log(`It's a Draw (paper and paper)`);
@@ -54,6 +56,7 @@ async function gameStart() {
     // Computer chose SCISSORS
     case "scissors":
       if (player === "rock") {
+        updateScore();
         console.log("You win! rock wins over scissors");
       } else if (player === "scissors") {
         console.log(`It's a Draw (scissors and scissors)`);
@@ -66,4 +69,10 @@ async function gameStart() {
       console.log("ERROR");
       break;
   }
+}
+
+async function updateScore() {
+  await fetch("http://localhost:5432/scorerps/1?password=test", {
+    method: "PUT",
+  });
 }
