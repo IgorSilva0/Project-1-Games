@@ -37,7 +37,9 @@ async function resetDatabase() {
     // user
     await pool.query(`
             INSERT INTO users (name, img)
-            VALUES ('Igor Silva','https://i.imgur.com/r1mYK7m.jpeg')
+            VALUES ('Igor Silva','https://i.imgur.com/r1mYK7m.jpeg'),
+            ('Clara','https://i.imgur.com/r1mYK7m.jpeg'),
+            ('Zoe','https://i.imgur.com/r1mYK7m.jpeg')
     `);
     // games
     await pool.query(`
@@ -49,7 +51,9 @@ async function resetDatabase() {
     await pool.query(`
             INSERT INTO score (game_id, user_id, score)
             VALUES (1, 1, 5),
-                   (2, 1, 10)
+                   (2, 1, 10),
+                   (1, 2, 50),
+                   (1, 3, 100)
     `);
     console.log(`Database reset successful`);
   } catch (err) {
