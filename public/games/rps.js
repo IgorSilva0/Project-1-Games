@@ -1,19 +1,26 @@
 const startbtn = document.querySelector("#startbtn");
 const allRps = document.querySelectorAll(".rps");
 const block = document.querySelector("#content");
+const img = document.createElement("img");
 let player = "";
 let round = 1;
 
+// When press PLAY button
 startbtn.addEventListener("click", () => {
-  allRps.forEach((btn) => {
-    btn.classList.remove("gameon");
-  });
-  startbtn.classList.add("gameon");
-  block.children[1].textContent = `Round ${round}`; // h3
-  block.children[2].classList.add("gameon"); // img
-  block.children[3].textContent = "Choose:"; // h4
+  btnaudio.volume = 0.5;
+  btnaudio.play();
+  setTimeout(() => {
+    allRps.forEach((btn) => {
+      btn.classList.remove("gameon");
+    });
+    startbtn.classList.add("gameon");
+    block.children[1].textContent = `Round ${round}`; // h3
+    block.children[2].classList.add("gameon"); // img
+    block.children[3].textContent = "Choose:"; // h4
+  }, "200");
 });
 
+// Listen to player Choice
 allRps.forEach((x) => {
   x.addEventListener("mouseover", (z) => {
     z.target.src =
@@ -24,10 +31,18 @@ allRps.forEach((x) => {
   });
   x.addEventListener("click", (z) => {
     player = z.target.id;
-    gameStart();
+    showChoice();
   });
 });
 
+// 3 2 1 GO
+async function showChoice() {
+  allRps.forEach((x) => x.classList.add("gameon"));
+  block.appendChild(img);
+  gameStart();
+}
+
+// Who wins?
 async function gameStart() {
   const rps = ["rock", "paper", "scissors"];
   let random = Math.floor(Math.random() * 3);

@@ -9,6 +9,7 @@ const rank = document.querySelector("#rank");
 const top1 = document.querySelector("#top1");
 const top2 = document.querySelector("#top2");
 const top3 = document.querySelector("#top3");
+const btnaudio = new Audio("./sound/button.mp3");
 const rankData = async () => {
   await displayScore();
 };

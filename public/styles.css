@@ -1,5 +1,7 @@
 * {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   color: rgb(255, 255, 255);
 }
 body {
@@ -7,7 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   background-image: url("https://e0.pxfuel.com/wallpapers/584/178/desktop-wallpaper-gaming-background-cool-black-and-red-gaming.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
   margin: 0;
@@ -116,18 +118,21 @@ ul {
 }
 
 #content {
+  background-image: url("./imgs/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
   width: 100%;
   height: 80%;
-  background-color: rgb(94, 94, 94);
-  margin-bottom: 10px;
+  margin: auto;
   border-radius: 20px;
   text-align: center;
 }
 #content p {
-  margin: auto;
+  margin-top: 10px;
   letter-spacing: 0.0015em;
   font-size: 3em;
-  color: rgb(0, 0, 0);
+  color: rgb(250, 183, 0);
   text-shadow: 0 1px rgb(88, 23, 23), -1px 0 black, -1px 2px rgb(88, 23, 23),
     -2px 1px black, -2px 3px rgb(88, 23, 23), -3px 2px black,
     -3px 4px rgb(88, 23, 23), -4px 3px black;
@@ -205,11 +210,11 @@ button {
 #startbtn:hover,
 :focus {
   color: #ffffff;
-  background: #008cff;
-  border: 1px solid #008cff;
+  background: #00ff6a;
+  border: 1px solid #00ff6a;
   text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
-  box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
-    0 0 100px #008cff;
+  box-shadow: 0 0 5px #00ff6a, 0 0 20px #00ff6a, 0 0 50px #00ff6a,
+    0 0 100px #00ff6a;
 }
 
 .tooltip {
