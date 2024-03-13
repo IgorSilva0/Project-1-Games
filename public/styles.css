@@ -155,10 +155,73 @@ ul {
 #rank img {
   box-shadow: red 0 0 10px;
 }
-.rps {
+.handOne,
+.handTwo {
   width: 6rem;
   height: 7rem;
   margin: 0 20px;
+}
+.handOne {
+  rotate: 90deg;
+  padding-top: 10%;
+  animation: handOneShake 3s;
+}
+.handTwo {
+  rotate: -90deg;
+  padding-top: 10%;
+  animation: handTwoShake 3s;
+}
+
+@keyframes handOneShake {
+  0% {
+    transform: rotate(0deg) translate3d(0px);
+  }
+  14% {
+    transform: rotate(-20deg) translateX(-20px);
+  }
+  30% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  44% {
+    transform: rotate(-20deg) translateX(-20px);
+  }
+  55% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  90% {
+    transform: rotate(-20deg) translateX(-20px);
+  }
+  100% {
+    transform: rotate(0deg) translateX(0px);
+  }
+}
+@keyframes handTwoShake {
+  0% {
+    transform: rotate(0deg) translate3d(0px);
+  }
+  14% {
+    transform: rotate(20deg) translateX(20px);
+  }
+  30% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  44% {
+    transform: rotate(20deg) translateX(20px);
+  }
+  55% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  90% {
+    transform: rotate(20deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(0deg) translateX(0px);
+  }
+}
+.rps {
+  width: 6rem;
+  height: 7rem;
+  margin: 25px 20px;
 }
 .rps:hover {
   animation: shake 0.4s;

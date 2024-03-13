@@ -1,7 +1,6 @@
 const startbtn = document.querySelector("#startbtn");
 const allRps = document.querySelectorAll(".rps");
 const block = document.querySelector("#content");
-const img = document.createElement("img");
 let player = "";
 let round = 1;
 
@@ -38,7 +37,19 @@ allRps.forEach((x) => {
 // 3 2 1 GO
 async function showChoice() {
   allRps.forEach((x) => x.classList.add("gameon"));
-  block.appendChild(img);
+  // create a first new img and style it
+  const handOne = document.createElement("img");
+  handOne.src = "../imgs/123.png";
+  handOne.classList.add("handOne");
+  handOne.id = "handOne";
+  // create a second new img and style it
+  const handTwo = document.createElement("img");
+  handTwo.src = "../imgs/321.png";
+  handTwo.classList.add("handTwo");
+  handTwo.id = "handTwo";
+  // append both imgs to content
+  block.appendChild(handOne);
+  block.appendChild(handTwo);
   gameStart();
 }
 
