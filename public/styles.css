@@ -155,20 +155,28 @@ ul {
 #rank img {
   box-shadow: red 0 0 10px;
 }
+/*Class for the result*/
+.choices {
+  width: 6rem;
+  height: 7rem;
+  padding-top: 10px;
+  margin: 15px 25px;
+}
+
 .handOne,
 .handTwo {
   width: 6rem;
   height: 7rem;
-  margin: 0 20px;
+  margin: 15px 20px;
 }
 .handOne {
   rotate: 90deg;
-  padding-top: 10%;
+  padding-top: 7%;
   animation: handOneShake 3s;
 }
 .handTwo {
   rotate: -90deg;
-  padding-top: 10%;
+  padding-top: 7%;
   animation: handTwoShake 3s;
 }
 
@@ -254,7 +262,7 @@ ul {
   display: none;
 }
 
-button {
+#startbtn {
   padding: 10px 20px;
   text-transform: uppercase;
   border-radius: 8px;
@@ -279,7 +287,30 @@ button {
   box-shadow: 0 0 5px #00ff6a, 0 0 20px #00ff6a, 0 0 50px #00ff6a,
     0 0 100px #00ff6a;
 }
-
+#playAgain:hover,
+:focus {
+  color: #ffffff;
+  background: #00ff6a;
+  border: 1px solid #00ff6a;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #00ff6a, 0 0 20px #00ff6a, 0 0 50px #00ff6a,
+    0 0 100px #00ff6a;
+}
+#playAgain {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
 .tooltip {
   position: relative;
   display: inline-block;
