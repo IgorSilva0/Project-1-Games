@@ -1,50 +1,79 @@
-const startBtn = document.querySelector("#startbtn");
-const allRps = document.querySelectorAll(".rps");
 const block = document.querySelector("#content");
-const linebreak = document.createElement("br");
-const playAgain = document.createElement("button");
-
 const btnAudio = new Audio("./sound/button.mp3");
-btnAudio.volume = 0.5;
-
-const roundInfo = block.children[1];
-const instruction = block.children[3];
-
+btnAudio.volume = 0.2;
+let instruction = "";
 let playerChoice = "";
 let round = 1;
 
-startBtn.addEventListener("click", () => {
-  btnAudio.play();
-  setTimeout(() => {
-    allRps.forEach((btn) => btn.classList.remove("gameon"));
-    startBtn.classList.add("gameon");
-    roundInfo.textContent = `Round ${round}`;
+function loadRPS() {
+  //add img to background
+  block.style.backgroundImage = "url('./imgs/bg.jpg')";
+  //clear div
+  block.innerHTML = "";
+  //title
+  const title = createEl("p", "Rock, Paper and Scissors");
+  //h3
+  const h3 = createEl("h3", "Welcome to the Game!");
+  //immg
+  const rules = createImage("./imgs/rps.png");
+  rules.style.width = "150px";
+  rules.style.height = "150px";
+  //h4
+  instruction = createEl("h4", "Are you ready to begin?");
+  //button to start game
+  const goBtn = createBtn("startbtn", "", "PLAY");
+  //append all elements above to div
+  appendElements([title, h3, rules, instruction, goBtn]);
+  rpsLoaded(goBtn);
+}
+
+function rpsLoaded(go) {
+  if (!go) {
+    const hand1 = createImage("./imgs/rockHand.png", "rps", "rock");
+    const hand2 = createImage("./imgs/paperHand.png", "rps", "paper");
+    const hand3 = createImage("./imgs/scissorsHand.png", "rps", "scissors");
+    block.children[1].textContent = `Round ${round}`;
     block.children[2].classList.add("gameon");
     instruction.textContent = "Choose:";
-  }, 200);
-});
+    instruction.style.color = "white";
+    appendElements([hand1, hand2, hand3]);
+    timeToChoose(hand1, hand2, hand3);
+  } else {
+    go.addEventListener("click", () => {
+      btnAudio.play();
+      setTimeout(() => {
+        const hand1 = createImage("./imgs/rockHand.png", "rps", "rock");
+        const hand2 = createImage("./imgs/paperHand.png", "rps", "paper");
+        const hand3 = createImage("./imgs/scissorsHand.png", "rps", "scissors");
+        go.remove();
+        block.children[1].textContent = `Round ${round}`;
+        block.children[2].classList.add("gameon");
+        instruction.textContent = "Choose:";
+        appendElements([hand1, hand2, hand3]);
+        timeToChoose(hand1, hand2, hand3);
+      }, 200);
+    });
+  }
+}
 
-playAgain.addEventListener("click", () => {
-  allRps.forEach((btn) => btn.classList.remove("gameon"));
-  round++;
-  playAgain.remove();
-});
+function timeToChoose(a, b, c) {
+  const allRps = [a, b, c];
+  allRps.forEach((btn) => {
+    btn.addEventListener("mouseover", (event) => {
+      event.target.src = event.target.src.replace(".png", "2.png");
+    });
+    btn.addEventListener("mouseout", (event) => {
+      event.target.src = event.target.src.replace("2.png", ".png");
+    });
+    btn.addEventListener("click", (event) => {
+      playerChoice = event.target.id;
+      threeTwoOne();
+      allRps.forEach((btn) => btn.remove());
+    });
+  });
+}
 
-allRps.forEach((btn) => {
-  btn.addEventListener("mouseover", (event) => {
-    event.target.src = event.target.src.replace(".png", "2.png");
-  });
-  btn.addEventListener("mouseout", (event) => {
-    event.target.src = event.target.src.replace("2.png", ".png");
-  });
-  btn.addEventListener("click", (event) => {
-    playerChoice = event.target.id;
-    showChoice();
-  });
-});
-
-async function showChoice() {
-  allRps.forEach((btn) => btn.classList.add("gameon"));
+async function threeTwoOne() {
   const handOne = createImage("../imgs/123.png", "handOne");
   const handTwo = createImage("../imgs/321.png", "handTwo");
 
@@ -57,67 +86,50 @@ async function showChoice() {
   await delay(700);
   instruction.textContent = "GOOOO!!!";
 
-  await delay(500);
+  await delay(700);
   removeElements([handOne, handTwo]);
   gameStart();
-  allRps.forEach((btn) => btn.remove());
-  choices(1, 2);
 }
 
 async function gameStart() {
   const rps = ["rock", "paper", "scissors"];
   const random = Math.floor(Math.random() * 3);
   const pcChoice = rps[random];
-  const winMessage = {
-    rock: "paper wins over rock",
-    paper: "scissors wins over paper",
-    scissors: "rock wins over scissors",
-  };
 
   if (playerChoice === pcChoice) {
-    console.log(`It's a Draw (${playerChoice} and ${pcChoice})`);
+    instruction.textContent = `It's a Draw, 😲 (${playerChoice} vs ${pcChoice})`;
+    instruction.style.color = "yellow";
+    choices(rps.indexOf(playerChoice), random, rps);
   } else if (
     (playerChoice === "rock" && pcChoice === "scissors") ||
     (playerChoice === "paper" && pcChoice === "rock") ||
     (playerChoice === "scissors" && pcChoice === "paper")
   ) {
-    console.log(`You win! ${playerChoice} wins over ${pcChoice}`);
+    instruction.textContent = `You win! 🎉 ${playerChoice} wins over ${pcChoice}`;
+    instruction.style.color = "#00ff6a";
+    choices(rps.indexOf(playerChoice), random, rps);
     await updateScore();
-    await rankData();
+    await displayRankData();
   } else {
-    console.log(`Computer wins! ${winMessage[pcChoice]}`);
+    instruction.textContent = `Computer wins! 💩 ${rps[random]} wins over ${
+      rps[rps.indexOf(playerChoice)]
+    }}`;
+    instruction.style.color = "red";
+    choices(rps.indexOf(playerChoice), random, rps);
   }
 }
 
-async function updateScore() {
-  await fetch("/scorerps/1?k=8*ej1^3d9K:J4zn136", {
-    method: "PUT",
+async function choices(p, c, i) {
+  const pc = createImage(`../imgs/${i[p]}Hand.png`, "choices", "");
+  const ply = createImage(`../imgs/${i[c]}Hand.png`, "choices", "");
+  const againBtn = createBtn("playAgain", "", "Again");
+  appendElements([ply, pc, linebreak, againBtn]);
+
+  againBtn.addEventListener("click", () => {
+    round++;
+    removeElements([pc, ply, againBtn]);
+    rpsLoaded();
   });
-}
-
-async function choices(p, c) {
-  const choices = ["rockHand", "paperHand", "scissorsHand"];
-  const pc = createImage(`../imgs/${choices[p]}.png`, "choices");
-  const py = createImage(`../imgs/${choices[c]}.png`, "choices");
-
-  appendElements([pc, py, linebreak, playAgain]);
-  playAgain.id = "playAgain";
-  playAgain.textContent = "Again";
-}
-
-function createImage(src, id) {
-  const img = document.createElement("img");
-  img.src = src;
-  img.classList.add(id);
-  return img;
-}
-
-function appendElements(elements) {
-  elements.forEach((element) => block.appendChild(element));
-}
-
-function removeElements(elements) {
-  elements.forEach((element) => element.remove());
 }
 
 function delay(ms) {
