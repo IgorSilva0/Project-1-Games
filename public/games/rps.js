@@ -6,23 +6,15 @@ let playerChoice = "";
 let round = 1;
 
 function loadRPS() {
-  //add img to background
   block.style.backgroundImage = "url('./imgs/bg.jpg')";
-  //clear div
   block.innerHTML = "";
-  //title
   const title = createEl("p", "Rock, Paper and Scissors");
-  //h3
   const h3 = createEl("h3", "Welcome to the Game!");
-  //immg
   const rules = createImage("./imgs/rps.png");
   rules.style.width = "150px";
   rules.style.height = "150px";
-  //h4
   instruction = createEl("h4", "Are you ready to begin?");
-  //button to start game
   const goBtn = createBtn("startbtn", "", "PLAY");
-  //append all elements above to div
   appendElements([title, h3, rules, instruction, goBtn]);
   rpsLoaded(goBtn);
 }
@@ -123,15 +115,16 @@ async function choices(p, c, i) {
   const pc = createImage(`../imgs/${i[p]}Hand.png`, "choices", "");
   const ply = createImage(`../imgs/${i[c]}Hand.png`, "choices", "");
   const againBtn = createBtn("playAgain", "", "Again");
-  appendElements([ply, pc, linebreak, againBtn]);
-
+  const rpsMenu = createBtn("rpsMenu", "", "Menu");
+  appendElements([ply, pc, linebreak, rpsMenu, againBtn]);
+  rpsMenu.addEventListener("click", () => {
+    round = 1;
+    removeElements([ply, pc, linebreak, rpsMenu, againBtn]);
+    loadRPS();
+  });
   againBtn.addEventListener("click", () => {
     round++;
-    removeElements([pc, ply, againBtn]);
+    removeElements([ply, pc, linebreak, rpsMenu, againBtn]);
     rpsLoaded();
   });
-}
-
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }

@@ -1,3 +1,4 @@
+const allElements = document.querySelectorAll("*");
 const mainBox = document.querySelector("#main");
 const sideBar = document.querySelector("#ulSideBar");
 const nightMode = document.querySelector("#nightMode");
@@ -31,12 +32,19 @@ gamesbtn.addEventListener("click", () => {
   const h1 = createEl("h1", "Games List");
   const game1 = createBtn("game1", "btnStyle", "Rock, Paper and Scissors");
   game1.style.marginBottom = "1rem";
-  game1.addEventListener("click", () => {
+  //RPS
+  game1.addEventListener("click", async () => {
+    block.innerHTML = "";
+    await loading();
     loadRPS();
   });
+  //BJ
   const game2 = createBtn("game2", "btnStyle", "Black Jack");
-  game2.addEventListener("click", () => {
-    console.log("hi");
+  game2.addEventListener("click", async () => {
+    block.innerHTML = "";
+    await loading();
+    block.style.backgroundImage = "url(./imgs/table.jpg)";
+    loadBlackJack();
   });
   appendElements([h1, game1, linebreak, game2]);
 });
@@ -67,19 +75,27 @@ rStar.addEventListener("click", () => {
 
 // Night mode
 nightMode.addEventListener("click", () => {
-  block.style.backgroundImage = "none";
-  block.innerHTML = "";
+  mainBox.style.backgroundColor = "rgb(29, 29, 29)";
+  allElements.forEach((x) => (x.style.color = "white"));
 });
 
 // Light mode
 lightMode.addEventListener("click", () => {
-  block.style.backgroundImage = "none";
-  block.innerHTML = "";
+  mainBox.style.backgroundColor = "White";
+  allElements.forEach((x) => (x.style.color = "white"));
 });
 
-function createEl(any, text) {
+function createEl(any, text, cls, id) {
   const el = document.createElement(`${any}`);
-  el.textContent = `${text}`;
+  if (text) {
+    el.textContent = `${text}`;
+  }
+  if (cls) {
+    el.classList.add(`${cls}`);
+  }
+  if (id) {
+    el.id = `${id}`;
+  }
   return el;
 }
 
@@ -115,6 +131,19 @@ function appendElements(elements) {
 
 function removeElements(elements) {
   elements.forEach((element) => element.remove());
+}
+
+async function loading() {
+  const loadingDiv = createEl("div", "Loading", "ring");
+  const loadingSpan = createEl("span", "", "loading");
+  loadingDiv.appendChild(loadingSpan);
+  appendElements([loadingDiv]);
+  await delay(500);
+  loadingDiv.remove();
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // increase score + 1, atm in user id = 1
