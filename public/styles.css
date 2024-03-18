@@ -254,6 +254,50 @@ ul {
   }
 }
 
+.betsImg:hover,
+.betsImg:focus {
+  color: #ffffff;
+  background: #e70707;
+  box-shadow: 0 0 5px #e70707, 0 0 20px #e70707, 0 0 50px #e70707,
+    0 0 100px #e70707;
+}
+.betsImg {
+  height: 50px;
+  width: 50px;
+  margin: 10px 5px;
+  text-transform: uppercase;
+  border-radius: 50%;
+  color: #000000;
+  background-color: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  transition: 0.5s ease;
+  user-select: none;
+}
+.betsRemove:focus,
+.betsRemove:hover {
+  color: #ffffff;
+  background: #e70707;
+  border: 1px solid #e70707;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #e70707, 0 0 20px #e70707, 0 0 50px #e70707,
+    0 0 100px #e70707;
+}
+.betsRemove {
+  padding: 10px 15px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: none;
+  background-color: #000000;
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+}
 .btnStyle:hover,
 .btnStyle:focus,
 #rpsMenu:hover,
