@@ -17,16 +17,18 @@ const gallery = document.querySelector(".fa-image");
 const bell = document.querySelector(".fa-bell");
 const config = document.querySelector(".fa-gear");
 const rStar = document.querySelector(".fa-ranking-star");
-
+let timeoutId;
 //// SIDE BAR BUTTONS
 // HOME
 home.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
 });
 
 // GAMES
 gamesbtn.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
   const h1 = createEl("h1", "Games List");
@@ -51,24 +53,28 @@ gamesbtn.addEventListener("click", () => {
 
 // GALLERY
 gallery.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
 });
 
 // BELL
 bell.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
 });
 
 // Config
 config.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
 });
 
 // Rank
 rStar.addEventListener("click", () => {
+  clearTimeout(timeoutId);
   block.style.backgroundImage = "none";
   block.innerHTML = "";
 });
@@ -143,7 +149,11 @@ async function loading() {
 }
 
 function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve, reject) => {
+    timeoutId = setTimeout(resolve, ms);
+    // Optionally, allow rejection of the delay
+    // You can call clearDelay to reject the delay
+  });
 }
 
 // increase score + 1, atm in user id = 1
