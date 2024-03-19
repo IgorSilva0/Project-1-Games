@@ -8,8 +8,9 @@ let round = 1;
 function loadRPS() {
   block.style.backgroundImage = "url('./imgs/bg.jpg')";
   block.innerHTML = "";
-  const title = createEl("p", "Rock, Paper and Scissors");
+  const title = createEl("p", "Rock, Paper and Scissors", "titleRps");
   const h3 = createEl("h3", "Welcome to the Game!");
+  h3.style.padding = "20px 0px";
   const rules = createImage("./imgs/rps.png");
   rules.style.width = "150px";
   rules.style.height = "150px";

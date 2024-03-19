@@ -20,8 +20,8 @@ body {
 #main {
   display: flex;
   align-content: center;
-  height: 550px;
-  width: 75%;
+  height: 700px;
+  width: 70%;
   background-color: rgb(29, 29, 29);
   border-radius: 50px;
   margin: 5% 10%;
@@ -44,7 +44,7 @@ ul {
   justify-content: space-around;
   padding: 10px 15px;
   margin: 15px 20px;
-  width: 20px;
+  width: 30px;
 }
 
 #ulSideBar li a i {
@@ -74,42 +74,6 @@ ul {
   text-shadow: rgb(255, 255, 255) 0 0 15px;
 }
 
-@media screen and (max-width: 700px) {
-  #topNavBar {
-    display: none;
-  }
-}
-@media screen and (max-width: 1100px) {
-  #rank,
-  #rank ul {
-    display: none;
-  }
-  #topNavBar {
-    width: 50%;
-    margin-right: 75px;
-  }
-  #ulSideBar {
-    padding: 8px 13px;
-    margin: 8px 17px;
-  }
-}
-
-#topNavBar {
-  width: 90%;
-  padding: 20px 0px;
-}
-#topNavBar ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 0;
-  margin: 10px 15px;
-}
-#topNavBar input,
-.fa.fa-search {
-  color: rgb(0, 0, 0);
-}
-
 #rank ul {
   display: flex;
   flex-direction: column;
@@ -129,7 +93,8 @@ ul {
   border-radius: 20px;
   text-align: center;
 }
-#content p {
+
+.titleRps {
   margin: 20px 0px;
   letter-spacing: 0.0015em;
   font-size: 3em;
@@ -137,6 +102,17 @@ ul {
   text-shadow: 0 1px rgb(88, 23, 23), -1px 0 black, -1px 2px rgb(88, 23, 23),
     -2px 1px black, -2px 3px rgb(88, 23, 23), -3px 2px black,
     -3px 4px rgb(88, 23, 23), -4px 3px black;
+  text-align: center;
+}
+
+.titleBj {
+  padding-bottom: 5rem;
+  margin: 20px 0px;
+  letter-spacing: 0.0015em;
+  font-size: 3em;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(255, 0, 0) 0 0 10px, rgb(255, 0, 0) 0 0 10px,
+    rgb(255, 0, 0) 0 0 10px, rgb(255, 0, 0) 0 0 10px;
   text-align: center;
 }
 
@@ -262,8 +238,8 @@ ul {
     0 0 100px #e70707;
 }
 .betsImg {
-  height: 50px;
-  width: 50px;
+  height: 5rem;
+  width: 5rem;
   margin: 10px 5px;
   text-transform: uppercase;
   border-radius: 50%;
@@ -449,4 +425,26 @@ ul {
   100% {
     transform: rotate(405deg);
   }
+}
+
+.dealing {
+  margin-top: 6rem;
+}
+
+.dealerBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.playerBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.cards {
+  width: 8vh;
+  height: 12vh;
+  display: inline;
 }
