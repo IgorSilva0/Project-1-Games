@@ -1,6 +1,11 @@
 const sixDecks = new Deck(6);
-const dealer = [];
-const player = [];
+let dealer = 0;
+let dealerA = 0;
+
+let player = 0;
+let playerA = 0;
+let split = 0;
+
 let bets = 0;
 let isFirstCall = true;
 
@@ -9,6 +14,11 @@ function loadBlackJack() {
   appendElements([beginBJbtn]);
   beginBJbtn.addEventListener("click", async () => {
     beginBJbtn.remove();
+    dealer = 0;
+    dealerA = 0;
+    player = 0;
+    playerA = 0;
+    split = 0;
     bets = 0;
     isFirstCall = true;
     placeBet();
@@ -23,7 +33,7 @@ async function placeBet() {
   const timer = createEl("h3", `Bets will close in - 13s`);
   const imgsBG = createEl("div", "");
   imgsBG.style.backgroundImage =
-    "linear-gradient(to right, transparent, #000000cc, transparent)";
+    "linear-gradient(to right, transparent, #000000, transparent)";
   const img1 = createImage("../imgs/chips/1.png", "betsImg", "1");
   const img5 = createImage("../imgs/chips/5.png", "betsImg", "5");
   const img10 = createImage("../imgs/chips/10.png", "betsImg", "10");
@@ -45,19 +55,26 @@ async function placeBet() {
   //
   removeElements([placeBets, amountBet, timer]);
   //
-  const dealingText = createEl("h3", "Dealing...");
-  imgsBG.classList.add("dealing");
-  imgsBG.appendChild(dealingText);
 
-  dealing();
+  dealing(imgsBG);
 }
 
-async function dealing() {
+async function dealing(imgsBG) {
+  const dealingText = createEl("h3", "Dealing...", "textDealing");
+  imgsBG.classList.add("dealing");
+  imgsBG.appendChild(dealingText);
+  await delay(1500);
+
   const dealerBox = createEl("div", "", "dealerBox");
+  const infoBj = createEl("div", "", "infoBj");
   const playerBox = createEl("div", "", "playerBox");
-  appendElements([dealerBox, playerBox]);
+  appendElements([dealerBox, infoBj, playerBox]);
+
+  let hiddenCard;
   for (let i = 1; i <= 4; i++) {
+    await delay(500);
     let nCard = sixDecks.cards.shift();
+    console.log(nCard);
     switch (i) {
       case 1:
         const card1 = createImage(
@@ -65,6 +82,7 @@ async function dealing() {
           "cards"
         );
         playerBox.appendChild(card1);
+        await checkValue(nCard.value, "player");
         break;
       case 2:
         const card2 = createImage(
@@ -72,6 +90,7 @@ async function dealing() {
           "cards"
         );
         dealerBox.appendChild(card2);
+        await checkValue(nCard.value, "dealer");
         break;
       case 3:
         const card3 = createImage(
@@ -79,18 +98,35 @@ async function dealing() {
           "cards"
         );
         playerBox.appendChild(card3);
+        await checkValue(nCard.value, "player");
         break;
       case 4:
-        const card4 = createImage(
+        hiddenCard = createImage(
           `../imgs/cards/${nCard.value + nCard.suit}.png`,
           "cards"
         );
+        const card4 = createImage(`../imgs/cards/back.png`, "cards");
         dealerBox.appendChild(card4);
+        await checkValue(nCard.value, "dealer");
+        console.log(player, playerA, dealer, dealerA);
         break;
       default:
         console.log("Something went wrong!");
         break;
     }
+  }
+}
+
+async function checkValue(value, who) {
+  const faceCards = { J: 10, Q: 10, K: 10 };
+  const numericValue = faceCards[value] || (value === "A" ? 10 : Number(value));
+
+  if (who === "dealer") {
+    dealer += numericValue;
+    dealerA += value === "A";
+  } else if (who === "player") {
+    player += numericValue;
+    playerA += value === "A";
   }
 }
 

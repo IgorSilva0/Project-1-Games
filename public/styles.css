@@ -427,6 +427,10 @@ ul {
   }
 }
 
+.textDealing {
+  color: red;
+}
+
 .dealing {
   margin-top: 6rem;
 }
@@ -436,15 +440,23 @@ ul {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 12vh;
+}
+.infoBj {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
 }
 .playerBox {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 12vh;
 }
 .cards {
   width: 8vh;
   height: 12vh;
-  display: inline;
 }
