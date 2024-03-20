@@ -58,7 +58,7 @@ async function placeBet() {
 }
 
 async function dealing(imgsBG) {
-  const dealingText = createEl("h3", "DEALING..", "textDealing");
+  const dealingText = createEl("h3", "DEALING...", "textDealing");
   imgsBG.classList.add("dealing");
   imgsBG.appendChild(dealingText);
   await delay(1500);
@@ -124,19 +124,31 @@ async function dealing(imgsBG) {
 }
 
 async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
-  const chooseBg = createEl("div", "", "smothBg");
-  const chooseText = createEl("h3", "MAKE YOUR DECISION");
+  const chooseBg = createEl("div", "", "");
+  const chooseText = createEl("h3", "MAKE YOUR DECISION", "blackBg");
   const double = createBtn("double", "", "DOUBLE");
   const hit = createBtn("hit", "", "", "+ <br /> HIT");
   const stand = createBtn("stand", "", "", "- <br /> STAND");
-  const split = createBtn("split", "disableBtn", "SPLIT");
+  const split = createBtn("", "defaultBtn", "SPLIT");
+  if (canSplit === 1) {
+    split.id = "split";
+  }
   [chooseText, double, hit, stand, split].forEach((x) =>
     chooseBg.appendChild(x)
   );
-
   infoBj.appendChild(chooseBg);
+  chooseText.textContent = "MAKE YOUR DECISION - 60s";
+  dealingText.textContent = "😎";
 
-  dealingText.textContent = "HELLO";
+  // What after?
+  for (let i = 59; i >= 0; i--) {
+    await delay(1000);
+    chooseText.textContent = `MAKE YOUR DECISION - ${i}s`;
+    if (i === 0) {
+      chooseText.textContent = `Time is up!`;
+      // What after?
+    }
+  }
 }
 
 async function checkValue(value, who) {
@@ -160,7 +172,7 @@ async function timeToBet(t, btns) {
       await delay(100);
       btns.forEach((btn) => btn.remove());
       removeBets("a");
-      t.textContent = `Bets are closed !`;
+      t.textContent = `Bets are closed.`;
       await delay(150);
     }
   }
