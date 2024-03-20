@@ -606,3 +606,7 @@ ul {
     transparent
   );
 }
+
+.inv {
+  display: none;
+}
