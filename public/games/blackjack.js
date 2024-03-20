@@ -4,7 +4,7 @@ let dealerA = 0;
 
 let player = 0;
 let playerA = 0;
-let split = 0;
+let canSplit = 0;
 
 let bets = 0;
 let isFirstCall = true;
@@ -18,7 +18,7 @@ function loadBlackJack() {
     dealerA = 0;
     player = 0;
     playerA = 0;
-    split = 0;
+    canSplit = 0;
     bets = 0;
     isFirstCall = true;
     placeBet();
@@ -31,9 +31,7 @@ async function placeBet() {
   const placeBets = createEl("p", `Place Your Bets`, "titleBj");
   const amountBet = createEl("h3", `Your bet is: ${bets}`);
   const timer = createEl("h3", `Bets will close in - 13s`);
-  const imgsBG = createEl("div", "");
-  imgsBG.style.backgroundImage =
-    "linear-gradient(to right, transparent, #000000, transparent)";
+  const imgsBG = createEl("div", "", "smothBg");
   const img1 = createImage("../imgs/chips/1.png", "betsImg", "1");
   const img5 = createImage("../imgs/chips/5.png", "betsImg", "5");
   const img10 = createImage("../imgs/chips/10.png", "betsImg", "10");
@@ -70,11 +68,12 @@ async function dealing(imgsBG) {
   const playerBox = createEl("div", "", "playerBox");
   appendElements([dealerBox, infoBj, playerBox]);
 
+  let evalValues = [];
+
   let hiddenCard;
   for (let i = 1; i <= 4; i++) {
-    await delay(500);
+    await delay(100);
     let nCard = sixDecks.cards.shift();
-    console.log(nCard);
     switch (i) {
       case 1:
         const card1 = createImage(
@@ -82,6 +81,7 @@ async function dealing(imgsBG) {
           "cards"
         );
         playerBox.appendChild(card1);
+        evalValues.push(nCard.value);
         await checkValue(nCard.value, "player");
         break;
       case 2:
@@ -98,7 +98,9 @@ async function dealing(imgsBG) {
           "cards"
         );
         playerBox.appendChild(card3);
+        evalValues.push(nCard.value);
         await checkValue(nCard.value, "player");
+        console.log(evalValues);
         break;
       case 4:
         hiddenCard = createImage(
@@ -108,13 +110,24 @@ async function dealing(imgsBG) {
         const card4 = createImage(`../imgs/cards/back.png`, "cards");
         dealerBox.appendChild(card4);
         await checkValue(nCard.value, "dealer");
-        console.log(player, playerA, dealer, dealerA);
         break;
       default:
         console.log("Something went wrong!");
         break;
     }
   }
+
+  if (evalValues[0] === evalValues[1]) {
+    canSplit++;
+  }
+  await nextMove(dealingText, dealerBox, infoBj, playerBox);
+}
+
+async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
+  const chooseBg = createEl("div", "", "smothBg");
+  // Stopped here.
+  const chooseText = createEl("h3", "");
+  dealingText.textContent = " Hello";
 }
 
 async function checkValue(value, who) {

@@ -460,3 +460,6 @@ ul {
   width: 8vh;
   height: 12vh;
 }
+.smothBg {
+  background-image: linear-gradient(to right, transparent, black, transparent);
+}
