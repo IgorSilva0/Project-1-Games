@@ -58,7 +58,7 @@ async function placeBet() {
 }
 
 async function dealing(imgsBG) {
-  const dealingText = createEl("h3", "Dealing...", "textDealing");
+  const dealingText = createEl("h3", "DEALING..", "textDealing");
   imgsBG.classList.add("dealing");
   imgsBG.appendChild(dealingText);
   await delay(1500);
@@ -125,9 +125,18 @@ async function dealing(imgsBG) {
 
 async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
   const chooseBg = createEl("div", "", "smothBg");
-  // Stopped here.
-  const chooseText = createEl("h3", "");
-  dealingText.textContent = " Hello";
+  const chooseText = createEl("h3", "MAKE YOUR DECISION");
+  const double = createBtn("double", "", "DOUBLE");
+  const hit = createBtn("hit", "", "", "+ <br /> HIT");
+  const stand = createBtn("stand", "", "", "- <br /> STAND");
+  const split = createBtn("split", "disableBtn", "SPLIT");
+  [chooseText, double, hit, stand, split].forEach((x) =>
+    chooseBg.appendChild(x)
+  );
+
+  infoBj.appendChild(chooseBg);
+
+  dealingText.textContent = "HELLO";
 }
 
 async function checkValue(value, who) {

@@ -105,7 +105,7 @@ function createEl(any, text, cls, id) {
   return el;
 }
 
-function createBtn(id, cls, text) {
+function createBtn(id, cls, text, HTML) {
   const crtBtn = document.createElement("button");
   if (id) {
     crtBtn.id = id;
@@ -115,6 +115,9 @@ function createBtn(id, cls, text) {
   }
   if (text) {
     crtBtn.textContent = `${text}`;
+  }
+  if (HTML) {
+    crtBtn.innerHTML = `${HTML}`;
   }
   return crtBtn;
 }
