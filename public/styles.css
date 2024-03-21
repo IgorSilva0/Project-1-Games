@@ -467,7 +467,6 @@ ul {
 
 /* Double up BTN */
 
-#double:focus,
 #double:hover {
   color: #000000;
   background: #ffc400;
@@ -494,7 +493,6 @@ ul {
 
 /* Hit BTN */
 
-#hit:focus,
 #hit:hover {
   color: #000000;
   background: #30ff3b;
@@ -525,7 +523,6 @@ ul {
 
 /* Stand BTN */
 
-#stand:focus,
 #stand:hover {
   color: #000000;
   background: #ff2323;
@@ -555,7 +552,6 @@ ul {
 
 /* Split BTN */
 
-#split:focus,
 #split:hover {
   color: #000000;
   background: #00a2ff;

@@ -10,6 +10,12 @@ let canSplit = false;
 let bets = 0;
 let isFirstCall = true;
 let decision = false;
+let handStatus = false;
+
+let isDoubleInProgress = false;
+let isHitInProgress = false;
+let isStandInProgress = false;
+let isSplitInProgress = false;
 
 function loadBlackJack() {
   const beginBJbtn = createBtn("startbtn", "", "PLAY");
@@ -29,6 +35,8 @@ function resetGame() {
   canSplit = false;
   bets = 0;
   isFirstCall = true;
+  decision = false;
+  handStatus = false;
 }
 
 async function placeBet() {
@@ -65,7 +73,7 @@ async function dealing(imgsBG) {
   const dealingText = createEl("h3", "DEALING...", "textDealing");
   imgsBG.classList.add("dealing");
   imgsBG.appendChild(dealingText);
-  await delay(1500);
+  await delay(500);
 
   const dealerBox = createEl("div", "", "dealerBox");
   const infoBj = createEl("div", "", "infoBj");
@@ -75,7 +83,7 @@ async function dealing(imgsBG) {
   let evalValues = [];
 
   for (let i = 1; i <= 4; i++) {
-    await delay(1000);
+    await delay(500);
     let nCard = sixDecks.cards.shift();
     switch (i) {
       case 1:
@@ -123,98 +131,166 @@ async function dealing(imgsBG) {
   if (evalValues[0] === evalValues[1]) {
     canSplit = true;
   }
-  await nextMove(dealingText, dealerBox, infoBj, playerBox);
+  nextMove(dealingText, dealerBox, infoBj, playerBox);
 }
 
 async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
   const chooseBg = createEl("div", "", "");
-  const chooseText = createEl("h3", "", "blackBg");
-  const double = createBtn("double", "", "DOUBLE");
+  const chooseText = createEl("h3", "MAKE YOUR DECISION - 60s", "blackBg");
+  const double = createBtn("", "defaultBtn", "DOUBLE");
   const hit = createBtn("hit", "", "", "+ <br /> HIT");
   const stand = createBtn("stand", "", "", "- <br /> STAND");
   const split = createBtn("", "defaultBtn", "SPLIT");
-
+  const allBtns = [double, hit, stand, split];
   // Event listeners for buttons
   if (bets > 0) {
+    double.id = "double";
     double.addEventListener("click", () => {
-      handleDouble(playerBox, chooseText);
-      decision = true;
+      if (!isDoubleInProgress) {
+        isDoubleInProgress = true;
+        handleDouble(dealingText, dealerBox, playerBox, chooseText, allBtns);
+      }
     });
   }
 
-  hit.addEventListener("click", () => {
-    handleHit(playerBox, chooseText);
+  hit.addEventListener("click", async () => {
+    if (!isHitInProgress) {
+      isHitInProgress = true;
+      await handleHit(
+        dealingText,
+        dealerBox,
+        playerBox,
+        chooseText,
+        allBtns
+      ).then(async () => {
+        isHitInProgress = false;
+        if (handStatus) {
+          decision = false;
+          await makeYourMove(
+            dealingText,
+            dealerBox,
+            playerBox,
+            chooseText,
+            allBtns
+          );
+        }
+      });
+    }
   });
 
   stand.addEventListener("click", () => {
-    handleStand(chooseText);
-    decision = true;
+    if (!isStandInProgress) {
+      isStandInProgress = true;
+      handleStand(dealingText, dealerBox, playerBox, chooseText, allBtns);
+    }
   });
 
   if (canSplit) {
     split.id = "split";
     split.addEventListener("click", () => {
-      handleSplit(playerBox, chooseText);
-      decision = true;
+      if (!isSplitInProgress) {
+        isSplitInProgress = true;
+        handleSplit(dealingText, dealerBox, playerBox, chooseText, allBtns);
+      }
     });
   }
 
   [chooseText, double, hit, stand, split].forEach((x) =>
     chooseBg.appendChild(x)
   );
-  infoBj.appendChild(chooseBg);
-  decision = await makeYourMove(chooseText, dealingText);
 
-  if (decision) {
-    [double, split].forEach((x) => x.remove());
+  infoBj.appendChild(chooseBg);
+
+  if (!decision) {
+    decision = await makeYourMove(
+      dealingText,
+      dealerBox,
+      playerBox,
+      chooseText,
+      allBtns
+    );
   }
 }
 
 //DOUBLE
-function handleDouble(playerBox, chooseText) {
+function handleDouble(dealingText, dealerBox, playerBox, chooseText, allBtns) {
+  allBtns[0].id = "";
+  decision = true;
   bets *= 2;
   console.log(bets);
 }
 
 //HIT
-async function handleHit(playerBox, chooseText) {
+async function handleHit(
+  dealingText,
+  dealerBox,
+  playerBox,
+  chooseText,
+  allBtns
+) {
+  decision = true;
+  allBtns[0].id = "";
   let nCard = sixDecks.cards.shift();
   const nextCard = createImage(
     `../imgs/cards/${nCard.value + nCard.suit}.png`,
     "cards"
   );
   await checkValue(nCard.value, "player");
+  chooseText.textContent = " Drawing 1 more card... ";
+  await delay(1000);
   playerBox.appendChild(nextCard);
-  if (player > 21) {
-    decision = true;
+  if (playerA >= 1 && player > 21) {
+    playerA--;
+    player -= 9;
   }
+
+  if (player > 21 && playerA < 1) {
+    chooseText.textContent = " Player bust ";
+    allBtns.forEach((x) => x.remove());
+    return (handStatus = false);
+  }
+
+  return (handStatus = true);
 }
 
 //STAND
-function handleStand(chooseText) {
-  console.log("Stand");
+function handleStand(dealingText, dealerBox, playerBox, chooseText, allBtns) {
+  decision = true;
+  chooseText.textContent = "Standing...";
+  allBtns.forEach((x) => x.remove());
 }
 
 //SPLIT
-function handleSplit(event) {
+function handleSplit(dealingText, dealerBox, playerBox, chooseText, allBtns) {
+  decision = true;
   console.log("Split");
 }
 
-async function makeYourMove(a, b) {
-  a.textContent = "MAKE YOUR DECISION - 60s";
-  b.textContent = "😎";
+async function makeYourMove(
+  dealingText,
+  dealerBox,
+  playerBox,
+  chooseText,
+  allBtns
+) {
+  dealingText.textContent = "😎";
 
-  for (let i = 60; i >= 0; i--) {
-    if (decision) {
-      a.textContent = "";
-      return true;
-    }
+  for (let i = 2; i >= 0; i--) {
     await delay(1000);
-    a.textContent = `MAKE YOUR DECISION - ${i}s`;
+    if (decision) {
+      return;
+    }
+    chooseText.textContent = `MAKE YOUR DECISION - ${i}s`;
     if (i === 0) {
-      a.textContent = `Time is up!`;
+      chooseText.textContent = `Time is up!`;
       console.log("Still running.");
-      return handleStand();
+      return handleStand(
+        dealingText,
+        dealerBox,
+        playerBox,
+        chooseText,
+        allBtns
+      );
     }
   }
 }
@@ -233,7 +309,7 @@ async function checkValue(value, who) {
 }
 
 async function timeToBet(t, btns) {
-  for (let i = 2; i >= 0; i--) {
+  for (let i = 1; i >= 0; i--) {
     await delay(1000);
     t.textContent = `Bets will close in - ${i}s`;
     if (i == 0) {
