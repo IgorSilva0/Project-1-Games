@@ -449,6 +449,9 @@ ul {
   align-items: center;
   height: 20vh;
 }
+.infoChild {
+  width: 80%;
+}
 .playerBox {
   display: flex;
   flex-direction: row;
@@ -601,6 +604,20 @@ ul {
     black,
     transparent
   );
+  padding: 0px 30px;
+}
+
+.loseBg {
+  color: red;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    black,
+    black,
+    black,
+    transparent
+  );
+  padding: 0px 50px;
 }
 
 .inv {

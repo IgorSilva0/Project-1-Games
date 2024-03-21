@@ -135,8 +135,9 @@ async function dealing(imgsBG) {
 }
 
 async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
+  dealingText.textContent = "😎";
   const chooseBg = createEl("div", "", "");
-  const chooseText = createEl("h3", "MAKE YOUR DECISION - 60s", "blackBg");
+  const chooseText = createEl("h3", "Make your decision - 60s", "blackBg");
   const double = createBtn("", "defaultBtn", "DOUBLE");
   const hit = createBtn("hit", "", "", "+ <br /> HIT");
   const stand = createBtn("stand", "", "", "- <br /> STAND");
@@ -173,6 +174,8 @@ async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
             chooseText,
             allBtns
           );
+        } else {
+          playerBust(chooseBg);
         }
       });
     }
@@ -273,14 +276,12 @@ async function makeYourMove(
   chooseText,
   allBtns
 ) {
-  dealingText.textContent = "😎";
-
-  for (let i = 2; i >= 0; i--) {
+  for (let i = 59; i >= 0; i--) {
     await delay(1000);
     if (decision) {
       return;
     }
-    chooseText.textContent = `MAKE YOUR DECISION - ${i}s`;
+    chooseText.textContent = `Make your decision - ${i}s`;
     if (i === 0) {
       chooseText.textContent = `Time is up!`;
       console.log("Still running.");
@@ -337,4 +338,14 @@ function removeBets(a) {
   } else if (a && delBet) {
     delBet.remove();
   }
+}
+
+async function playerBust(chooseBg) {
+  let result = "";
+  if (bets === 0) {
+    result = "ZERO";
+  }
+  const text = createEl("h1", `YOU LOSE : ${result} CHIPS.`, "loseBg");
+  await delay(1000);
+  chooseBg.appendChild(text);
 }
