@@ -18,6 +18,8 @@ let isStandInProgress = false;
 let isSplitInProgress = false;
 
 function loadBlackJack() {
+  const block = document.querySelector("#content");
+  block.innerHTML = "";
   const beginBJbtn = createBtn("startbtn", "", "PLAY");
   appendElements([beginBJbtn]);
   beginBJbtn.addEventListener("click", async () => {
@@ -348,4 +350,11 @@ async function playerBust(chooseBg) {
   const text = createEl("h1", `YOU LOSE : ${result} CHIPS.`, "loseBg");
   await delay(1000);
   chooseBg.appendChild(text);
+  await delay(1000);
+  const playAgain = createBtn("startbtn", "", "PLAY AGAIN");
+  chooseBg.appendChild(playAgain);
+  playAgain.addEventListener("click", () => {
+    loadBlackJack();
+    [playAgain, text].forEach((x) => x.remove());
+  });
 }
