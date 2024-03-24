@@ -17,6 +17,9 @@ let isHitInProgress = false;
 let isStandInProgress = false;
 let isSplitInProgress = false;
 
+let evalValues = [];
+let evalDealer = [];
+
 function loadBlackJack() {
   const block = document.querySelector("#content");
   block.innerHTML = "";
@@ -39,6 +42,10 @@ function resetGame() {
   isFirstCall = true;
   decision = false;
   handStatus = false;
+  isDoubleInProgress = false;
+  isHitInProgress = false;
+  isStandInProgress = false;
+  isSplitInProgress = false;
 }
 
 async function placeBet() {
@@ -82,8 +89,6 @@ async function dealing(imgsBG) {
   const playerBox = createEl("div", "", "playerBox");
   appendElements([dealerBox, infoBj, playerBox]);
 
-  let evalValues = [];
-
   for (let i = 1; i <= 4; i++) {
     await delay(500);
     let nCard = sixDecks.cards.shift();
@@ -103,6 +108,7 @@ async function dealing(imgsBG) {
           "cards"
         );
         dealerBox.appendChild(card2);
+        evalDealer.push(nCard.value);
         await checkValue(nCard.value, "dealer");
         break;
       case 3:
@@ -122,6 +128,8 @@ async function dealing(imgsBG) {
         );
         const card4 = createImage(`../imgs/cards/back.png`, "cards");
         dealerBox.appendChild(card4);
+        evalDealer.push(nCard.value);
+        console.log(evalDealer);
         await checkValue(nCard.value, "dealer");
         break;
       default:
@@ -186,7 +194,14 @@ async function nextMove(dealingText, dealerBox, infoBj, playerBox) {
   stand.addEventListener("click", () => {
     if (!isStandInProgress) {
       isStandInProgress = true;
-      handleStand(dealingText, dealerBox, playerBox, chooseText, allBtns);
+      handleStand(
+        dealingText,
+        dealerBox,
+        playerBox,
+        chooseText,
+        allBtns,
+        chooseBg
+      );
     }
   });
 
@@ -246,7 +261,7 @@ async function handleHit(
   playerBox.appendChild(nextCard);
   if (playerA >= 1 && player > 21) {
     playerA--;
-    player -= 9;
+    player -= 10;
   }
 
   if (player > 21 && playerA < 1) {
@@ -259,16 +274,85 @@ async function handleHit(
 }
 
 //STAND
-function handleStand(dealingText, dealerBox, playerBox, chooseText, allBtns) {
-  decision = true;
+async function handleStand(
+  dealingText,
+  dealerBox,
+  playerBox,
+  chooseText,
+  allBtns,
+  chooseBg
+) {
   chooseText.textContent = "Standing...";
   allBtns.forEach((x) => x.remove());
+  decision = true;
+  await delay(1000);
+  chooseText.textContent = "Dealer turn...";
+  await delay(1000);
+  dealerBox.children[1].src = `${hiddenCard.src}`;
+  dealerTurn(dealingText, dealerBox, playerBox, chooseText, chooseBg);
 }
 
 //SPLIT
 function handleSplit(dealingText, dealerBox, playerBox, chooseText, allBtns) {
   decision = true;
   console.log("Split");
+}
+
+async function dealerTurn(
+  dealingText,
+  dealerBox,
+  playerBox,
+  chooseText,
+  chooseBg
+) {
+  const playAgain = createBtn("startbtn", "", "PLAY AGAIN");
+  while (dealer <= 16) {
+    let nCard = sixDecks.cards.shift();
+    const nextCard = createImage(
+      `../imgs/cards/${nCard.value + nCard.suit}.png`,
+      "cards"
+    );
+    evalDealer.push(nCard.value);
+    await checkValue(nCard.value, "dealer");
+    dealingText.textContent = "Drawing 1 more card...";
+    await delay(1000);
+    dealerBox.appendChild(nextCard);
+    if (dealerA >= 1 && dealer > 21) {
+      dealerA--;
+      dealer -= 10;
+    }
+    await delay(1000);
+    if (dealer > 21 && dealerA < 1) {
+      dealingText.textContent = " Dealer bust ";
+      chooseText.textContent = " You WIN! ";
+      break;
+    }
+    if (dealer >= 17 && dealer < 21) {
+      break;
+    }
+  }
+  if (dealer >= 17 && dealer <= 21) {
+    checkResult(dealingText, chooseText);
+  }
+  await delay(1000);
+  chooseBg.appendChild(playAgain);
+  playAgain.addEventListener("click", () => {
+    loadBlackJack();
+  });
+}
+
+async function checkResult(dealingText, chooseText) {
+  if (dealer === player) {
+    dealingText.textContent = " 😲 ";
+    chooseText.textContent = " It`s a Tie! ";
+  }
+  if (dealer > player) {
+    dealingText.textContent = " 🤑 ";
+    chooseText.textContent = " Dealer Wins! ";
+  } else {
+    dealingText.textContent = " 😰 ";
+    chooseText.textContent = " You Win! ";
+  }
 }
 
 async function makeYourMove(
@@ -300,7 +384,7 @@ async function makeYourMove(
 
 async function checkValue(value, who) {
   const faceCards = { J: 10, Q: 10, K: 10 };
-  const numericValue = faceCards[value] || (value === "A" ? 10 : Number(value));
+  const numericValue = faceCards[value] || (value === "A" ? 11 : Number(value));
 
   if (who === "dealer") {
     dealer += numericValue;
@@ -346,6 +430,8 @@ async function playerBust(chooseBg) {
   let result = "";
   if (bets === 0) {
     result = "ZERO";
+  } else {
+    result = bets;
   }
   const text = createEl("h1", `YOU LOSE : ${result} CHIPS.`, "loseBg");
   await delay(1000);
@@ -355,6 +441,5 @@ async function playerBust(chooseBg) {
   chooseBg.appendChild(playAgain);
   playAgain.addEventListener("click", () => {
     loadBlackJack();
-    [playAgain, text].forEach((x) => x.remove());
   });
 }
